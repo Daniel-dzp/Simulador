@@ -1,4 +1,4 @@
-package generadordeseudonumeros;
+package generador;
 
 import java.io.IOException;
 import javafx.application.Application;

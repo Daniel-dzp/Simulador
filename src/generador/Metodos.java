@@ -1,4 +1,4 @@
-package generadordeseudonumeros;
+package generador;
 
 /**
  * @author dzp

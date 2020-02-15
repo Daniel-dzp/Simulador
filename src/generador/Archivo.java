@@ -1,4 +1,4 @@
-package generadordeseudonumeros;
+package generador;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
