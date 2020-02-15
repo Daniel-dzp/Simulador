@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package generador;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,13 +12,14 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 /**
@@ -95,7 +90,7 @@ public class VentanaController implements Initializable {
             guardar.setVisible(true);
             
         }catch(NumberFormatException  e){
-            System.out.println("Error");
+            mensajeError("Error", "Introduce solo números enteros");
         }
         
         
@@ -141,6 +136,7 @@ public class VentanaController implements Initializable {
     private void guardar(ActionEvent event) throws IOException {
         archivo.guardar(numeros);
         guardar.setVisible(false);
+        mensajeInformativo("Numeros","Se guardaron correctamente los números");
     }
     
     @FXML
@@ -154,10 +150,10 @@ public class VentanaController implements Initializable {
             n = Integer.parseInt(nT);
             
             numeros = archivo.leer(n);
-            System.out.println("");
+            
             mostrarTabla();
         }catch(NumberFormatException  e){
-            System.out.println("Error");
+            mensajeError("Error", "Introduce solo números enteros");
         }
     }
 
@@ -166,6 +162,31 @@ public class VentanaController implements Initializable {
         if(numeros != null){
             numeros = null;
             tabla.getColumns().clear();
+            guardar.setVisible(false);
         }
+    }
+    
+    public void mensajeInformativo(String titulo, String contenido)
+    {
+        Alert dialogo = new Alert(Alert.AlertType.INFORMATION);
+        
+        dialogo.setTitle(titulo);
+        dialogo.setHeaderText(null);
+        dialogo.setContentText(contenido);
+        dialogo.initStyle(StageStyle.UTILITY);
+        
+        dialogo.showAndWait();
+    }
+    
+    public void mensajeError(String titulo, String contenido)
+    {
+        Alert dialogo = new Alert(Alert.AlertType.ERROR);
+        
+        dialogo.setTitle(titulo);
+        dialogo.setHeaderText(null);
+        dialogo.setContentText(contenido);
+        dialogo.initStyle(StageStyle.UTILITY);
+        
+        dialogo.showAndWait();
     }
 }
