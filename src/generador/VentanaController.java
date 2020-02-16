@@ -29,34 +29,21 @@ import javafx.util.Callback;
  */
 public class VentanaController implements Initializable {
 
-    @FXML
-    private AnchorPane mixtoGenerar;
-    @FXML
-    private Button mixtoInfo;
-    @FXML
-    private TextField mixtoSemilla;
-    @FXML
-    private TextField mixtoA;
-    @FXML
-    private TextField mixtoM;
-    @FXML
-    private TextField mixtoC;
-    @FXML
-    private TextField mixtoN;
-    @FXML
-    private Button visualizarInfo;
-    @FXML
-    private TextField visualizarN;
-    @FXML
-    private TableView<String[]> tabla;
-    
+    @FXML    private AnchorPane mixtoGenerar;
+    @FXML    private Button mixtoInfo;
+    @FXML    private TextField mixtoSemilla;
+    @FXML    private TextField mixtoA;
+    @FXML    private TextField mixtoM;
+    @FXML    private TextField mixtoC;
+    @FXML    private TextField mixtoN;
+    @FXML    private TextField visualizarN;
+    @FXML    private TableView<String[]> tabla;
+    @FXML    private Button guardar;
     
     Metodos metodos;
     Archivo archivo;
     
     double numeros[];
-    @FXML
-    private Button guardar;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,10 +71,20 @@ public class VentanaController implements Initializable {
             c = Integer.parseInt(cT);
             n = Integer.parseInt(nT);
             
-            numeros = metodos.mixto(semilla, a, m, c, n);
-            
-            mostrarTabla();
-            guardar.setVisible(true);
+            if(semilla>0 && m>0 && a>0 && c>0 && n>0
+                    && m>semilla && m>a && m>c){
+                
+                numeros = metodos.mixto(semilla, a, m, c, n);
+                mostrarTabla();
+                guardar.setVisible(true);
+            }
+            else
+                mensajeError("Error",
+                        "Xn+1 = (a Xn + c) mod m, n>=0\n\n"
+                        + "Xo = Semilla(Xo>0)\n"
+                        + "a = Multiplicador(a>0)\n"
+                        + "c = Constante (c>0)\n"
+                        + "m = Modulo(m>Xo, m>a y m>c)\n");
             
         }catch(NumberFormatException  e){
             mensajeError("Error", "Introduce solo números enteros");
@@ -100,36 +97,42 @@ public class VentanaController implements Initializable {
     {
         String[][] matrizNumeros;
         
-        matrizNumeros = new String[(int)Math.ceil(numeros.length/10.0)+1][10];
-        
-        for(int i=0;i<10;i++)
-            matrizNumeros[0][i] = (i+1)+""; 
-        for(int i=1;i-1<(int)Math.ceil(numeros.length/10.0);i++){
-            for(int j=0;j<10;j++){
-                if(numeros.length>i*10+j)
-                    matrizNumeros[i][j] = ""+numeros[i*10+j];
-            }
-        }
-        
         tabla.getColumns().clear();
-        
-        ObservableList<String[]> data = FXCollections.observableArrayList();
-        data.addAll(Arrays.asList(matrizNumeros));
-        data.remove(0);
-        
-        for (int i = 0; i < matrizNumeros[0].length; i++) {
-            TableColumn tc = new TableColumn(matrizNumeros[0][i]);
-            final int colNo = i;
-            tc.setCellValueFactory(new Callback<CellDataFeatures<String[], String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(CellDataFeatures<String[], String> p) {
-                    return new SimpleStringProperty((p.getValue()[colNo]));
+        if(numeros != null){
+            matrizNumeros = new String[(int)Math.ceil(numeros.length/10.0)+1][10];
+
+            for(int i=0;i<10;i++)
+                matrizNumeros[0][i] = (i+1)+""; 
+            for(int i=0;i<(int)Math.ceil(numeros.length/10.0);i++){
+                for(int j=0;j<10;j++){
+                    if(numeros.length>i*10+j)
+                        matrizNumeros[i+1][j] = ""+numeros[i*10+j];
                 }
-            });
-            tc.setPrefWidth(56);
-            tabla.getColumns().add(tc);
+            }
+
+            ObservableList<String[]> data = FXCollections.observableArrayList();
+            data.addAll(Arrays.asList(matrizNumeros));
+            data.remove(0);
+
+            for (int i = 0; i < matrizNumeros[0].length; i++) {
+                TableColumn tc = new TableColumn(matrizNumeros[0][i]);
+                final int colNo = i;
+                tc.setCellValueFactory(new Callback<CellDataFeatures<String[], String>, ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(CellDataFeatures<String[], String> p) {
+                        return new SimpleStringProperty((p.getValue()[colNo]));
+                    }
+                });
+                tc.setPrefWidth(56);
+                tabla.getColumns().add(tc);
+            }
+            tabla.setItems(data);
         }
-        tabla.setItems(data);
+        else
+            mensajeError("Error", archivo.errorMensaje);
+        
+        if(archivo.error)
+            mensajeError("Error", archivo.errorMensaje);
     }
 
     @FXML
@@ -149,11 +152,15 @@ public class VentanaController implements Initializable {
         try{
             n = Integer.parseInt(nT);
             
-            numeros = archivo.leer(n);
-            
-            mostrarTabla();
+            if(n >= 1)
+            {
+                numeros = archivo.leer(n);
+                mostrarTabla();
+            }
+            else
+                mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
         }catch(NumberFormatException  e){
-            mensajeError("Error", "Introduce solo números enteros");
+            mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
         }
     }
 
@@ -165,6 +172,8 @@ public class VentanaController implements Initializable {
             guardar.setVisible(false);
         }
     }
+    
+    
     
     public void mensajeInformativo(String titulo, String contenido)
     {
@@ -188,5 +197,15 @@ public class VentanaController implements Initializable {
         dialogo.initStyle(StageStyle.UTILITY);
         
         dialogo.showAndWait();
+    }
+
+    @FXML
+    private void mixtoInfo(ActionEvent event) {
+        mensajeInformativo("Método congruencial mixto",
+                "Xn+1 = (a Xn + c) mod m, n>=0\n\n"
+                + "Xo = Semilla(Xo>0)\n"
+                        + "a = Multiplicador(a>0)\n"
+                        + "c = Constante (c>0)\n"
+                        + "m = Modulo(m>Xo, m>a y m>c)\n");
     }
 }

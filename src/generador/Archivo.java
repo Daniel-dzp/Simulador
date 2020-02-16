@@ -11,6 +11,9 @@ import java.io.IOException;
  * @author dzp
  */
 public class Archivo{
+    public String errorMensaje = "";
+    public boolean error = false;
+    
     public Archivo(){
     
     }
@@ -29,21 +32,31 @@ public class Archivo{
         archivo.close();
     }
     
-    public double[] leer(int n) throws FileNotFoundException, IOException{
-        double numeros[];
+    public double[] leer(int n){
+        double numeros[] = null;
         int llave;
         int noBloques;
-        FileInputStream arch = new FileInputStream("binario.bin");
-        DataInputStream archivo = new DataInputStream(arch);
+        int i=0;
         
-        numeros = new double[n];
-        for(int i=0;i<n;i++)
-        {
-            llave = archivo.readInt();
-            numeros[i] = archivo.readDouble();
+        error = false;
+        try{
+            FileInputStream arch = new FileInputStream("binario.bin");
+            DataInputStream archivo = new DataInputStream(arch);
+
+            numeros = new double[n];
+            for(i=0;i<n;i++)
+            {
+                llave = archivo.readInt();
+                numeros[i] = archivo.readDouble();
+            }
+            archivo.close();
+        }catch(FileNotFoundException e){
+            error = true;
+            errorMensaje = "No existe el archivo";
+        }catch(IOException e){
+            error = true;
+            errorMensaje = "Solo existen"+i+" numeros guardados.";
         }
-        
-        archivo.close();
         return numeros;
     }
     

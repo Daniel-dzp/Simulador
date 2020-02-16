@@ -16,7 +16,6 @@ public class Metodos {
             semilla = (a * semilla + c) % m;
             numeros[i] = (double)semilla / m;
             numeros[i] = (double)((int)(numeros[i]*10000))/10000;
-            //System.out.println(numeros[i]);
         }
         
         return numeros;
