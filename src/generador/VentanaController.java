@@ -3,6 +3,7 @@ package generador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -18,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -44,6 +46,9 @@ public class VentanaController implements Initializable {
     Archivo archivo;
     
     double numeros[];
+    @FXML    private TextField adictivoNo;
+    @FXML    private TextField adictivoM;
+    @FXML    private TextField adictivoN;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,6 +58,45 @@ public class VentanaController implements Initializable {
         guardar.setVisible(false);
     }
 
+    @FXML
+    private void adictivoGenerar(ActionEvent event) {
+        String noSemillasT, mT, nT;
+        int noSemillas, m, n;
+        int semillas[];
+        
+        noSemillasT = adictivoNo.getText();
+        mT = adictivoM.getText();
+        nT = adictivoN.getText();
+        
+        try{
+            noSemillas = Integer.parseInt(noSemillasT);
+            m = Integer.parseInt(mT);
+            n = Integer.parseInt(nT);
+            
+            if(noSemillas>1 && m>0  && n>0){
+                semillas = new int[noSemillas];
+                for(int i=0;i<noSemillas;i++)
+                    semillas[i] = mensajeEntrada("Introducir Semillas", "Dame semilla "+(i+1)+" de "+noSemillas);
+                
+                archivo.error = false;
+                numeros = metodos.adictivo(semillas, m, n);
+                mostrarTabla();
+                
+                guardar.setVisible(true);
+            }
+            else
+                mensajeError("Error",
+                        "Xn = (Xn-1 - Xi-n) mod m\n\n"
+                        + "Xn = Semilla(Xo>0)\n"
+                        + "m = Modulo\n");
+            
+        }catch(NumberFormatException  e){
+            mensajeError("Error", "Introduce solo números enteros");
+        }
+        
+        
+    }
+    
     @FXML
     private void mixtoGenerar(ActionEvent event) {
         String semillaT, mT, aT, cT, nT;
@@ -74,8 +118,10 @@ public class VentanaController implements Initializable {
             if(semilla>0 && m>0 && a>0 && c>0 && n>0
                     && m>semilla && m>a && m>c){
                 
+                archivo.error = false;
                 numeros = metodos.mixto(semilla, a, m, c, n);
                 mostrarTabla();
+                
                 guardar.setVisible(true);
             }
             else
@@ -128,8 +174,8 @@ public class VentanaController implements Initializable {
             }
             tabla.setItems(data);
         }
-        else
-            mensajeError("Error", archivo.errorMensaje);
+        //else
+        //    mensajeError("Error", archivo.errorMensaje);
         
         if(archivo.error)
             mensajeError("Error", archivo.errorMensaje);
@@ -198,6 +244,37 @@ public class VentanaController implements Initializable {
         
         dialogo.showAndWait();
     }
+    
+    public int mensajeEntrada(String titulo, String contenido)
+    {
+        TextInputDialog dialogo = new TextInputDialog();
+        dialogo.setTitle(titulo);
+        dialogo.setHeaderText(null);
+        dialogo.setContentText(contenido);
+        dialogo.initStyle(StageStyle.UTILITY);
+        
+        Optional<String> entrada = dialogo.showAndWait();
+        
+        if(entrada.isPresent())
+        {
+            try{
+                return Integer.parseInt(entrada.get());
+            }catch(NumberFormatException  e){
+                return mensajeEntrada(titulo, contenido);
+            }
+            
+        }
+        else
+            return mensajeEntrada(titulo, contenido);
+    }
+    
+    @FXML
+    private void adictivoInfo(ActionEvent event) {
+        mensajeInformativo("Método congruencial adictivo",
+                "Xn = (Xn-1 - Xi-n) mod m\n\n"
+                        + "Xn = Semilla(Xo>0)\n"
+                        + "m = Modulo\n");
+    }
 
     @FXML
     private void mixtoInfo(ActionEvent event) {
@@ -208,4 +285,8 @@ public class VentanaController implements Initializable {
                         + "c = Constante (c>0)\n"
                         + "m = Modulo(m>Xo, m>a y m>c)\n");
     }
+    
+    
+
+    
 }

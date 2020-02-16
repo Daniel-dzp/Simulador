@@ -29,6 +29,7 @@ public class Archivo{
             archivo.writeDouble(datos[i]);
         }
         
+        error = false;
         archivo.close();
     }
     

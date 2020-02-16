@@ -20,4 +20,26 @@ public class Metodos {
         
         return numeros;
     }
+    
+    public double[] adictivo(int semillas[], int m, int n){
+        double numeros[] = null;
+        double semillasGeneradas[];
+        int noSemillas;
+        
+        noSemillas = semillas.length;
+        numeros = new double[n];
+        semillasGeneradas = new double[noSemillas + n];
+        
+        for(int i=0;i<noSemillas;i++)
+            semillasGeneradas[i] = semillas[i];
+        
+        for(int i=0;i<n;i++){
+            semillasGeneradas[noSemillas+i] = (semillasGeneradas[i]+semillasGeneradas[noSemillas-1+i])% m;
+            //System.out.println(semillasGeneradas[i]+" - "+semillasGeneradas[noSemillas-1+i]+" - "+m+"="+semillasGeneradas[noSemillas+i]);
+            numeros[i] = (double) semillasGeneradas[noSemillas+i]/ (m-1);
+            numeros[i] = (double)((int)(numeros[i]*10000))/10000;
+        }
+        
+        return numeros;
+    }
 }
