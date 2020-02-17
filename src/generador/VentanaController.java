@@ -41,22 +41,19 @@ public class VentanaController implements Initializable {
     @FXML    private TextField visualizarN;
     @FXML    private TableView<String[]> tabla;
     @FXML    private Button guardar;
+    @FXML    private TextField aditivoNo;
+    @FXML    private TextField aditivoM;
+    @FXML    private TextField aditivoN;
+    @FXML    private TextField multiN;
+    @FXML    private TextField multiK;
+    @FXML    private TextField multiG;
+    @FXML    private TextField multiSemilla;
+    
     
     Metodos metodos;
     Archivo archivo;
     
     double numeros[];
-    @FXML    private TextField aditivoNo;
-    @FXML    private TextField aditivoM;
-    @FXML    private TextField aditivoN;
-    @FXML
-    private TextField multiN;
-    @FXML
-    private TextField multiK;
-    @FXML
-    private TextField multiG;
-    @FXML
-    private TextField multiSemilla;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -321,7 +318,7 @@ public class VentanaController implements Initializable {
     
     @FXML
     private void aditivoInfo(ActionEvent event) {
-        mensajeInformativo("Método congruencial adictivo",
+        mensajeInformativo("Método congruencial aditivo",
                 "Xn = (Xn-1 - Xi-n) mod m\n\n"
                 + "Xn = Semilla(Xo>0)\n"
                 + "m = Modulo\n");

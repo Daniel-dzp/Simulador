@@ -56,7 +56,7 @@ public class Archivo{
             errorMensaje = "No existe el archivo";
         }catch(IOException e){
             error = true;
-            errorMensaje = "Solo existen"+i+" numeros guardados.";
+            errorMensaje = "Solo existen "+i+" numeros guardados.";
         }
         return numeros;
     }
