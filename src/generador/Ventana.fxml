@@ -13,19 +13,19 @@
    <children>
       <TabPane layoutX="1.0" layoutY="1.0" prefHeight="254.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab onSelectionChanged="#tabCambio" text="Método Adictivo">
+            <Tab onSelectionChanged="#tabCambio" text="Método Aditivo">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="600.0">
                      <children>
                         <Label layoutX="44.0" layoutY="26.0" style="-fx-font-weight: bold;" text="INGRESAR DATOS" />
-                        <Button layoutX="485.0" layoutY="22.0" mnemonicParsing="false" onAction="#adictivoInfo" prefHeight="25.0" prefWidth="61.0" text="Info" />
-                        <Button layoutX="266.0" layoutY="192.0" mnemonicParsing="false" onAction="#adictivoGenerar" text="GENERAR" />
+                        <Button layoutX="485.0" layoutY="22.0" mnemonicParsing="false" onAction="#aditivoInfo" prefHeight="25.0" prefWidth="61.0" text="Info" />
+                        <Button layoutX="266.0" layoutY="192.0" mnemonicParsing="false" onAction="#aditivoGenerar" text="GENERAR" />
                         <Label layoutX="66.0" layoutY="68.0" text="No. semilla" />
-                        <TextField fx:id="adictivoNo" layoutX="164.0" layoutY="64.0" promptText="Cantidad de semilla" />
+                        <TextField fx:id="aditivoNo" layoutX="164.0" layoutY="64.0" promptText="Cantidad de semilla" />
                         <Label layoutX="376.0" layoutY="68.0" text="m" />
-                        <TextField fx:id="adictivoM" layoutX="411.0" layoutY="64.0" promptText="Módulo" />
+                        <TextField fx:id="aditivoM" layoutX="411.0" layoutY="64.0" promptText="Módulo" />
                         <Label layoutX="44.0" layoutY="113.0" text="Numeros a generar" />
-                        <TextField fx:id="adictivoN" layoutX="164.0" layoutY="109.0" text="100" />
+                        <TextField fx:id="aditivoN" layoutX="164.0" layoutY="109.0" text="100" />
                      </children>
                   </AnchorPane>
               </content>

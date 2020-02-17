@@ -41,7 +41,7 @@ public class Metodos {
         return seudoNumeros;   
     }
     
-    public double[] adictivo(int semillas[], int m, int n){
+    public double[] aditivo(int semillas[], int m, int n){
         double numeros[] = null;
         double semillasGeneradas[];
         int noSemillas;

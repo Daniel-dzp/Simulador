@@ -46,9 +46,9 @@ public class VentanaController implements Initializable {
     Archivo archivo;
     
     double numeros[];
-    @FXML    private TextField adictivoNo;
-    @FXML    private TextField adictivoM;
-    @FXML    private TextField adictivoN;
+    @FXML    private TextField aditivoNo;
+    @FXML    private TextField aditivoM;
+    @FXML    private TextField aditivoN;
     @FXML
     private TextField multiN;
     @FXML
@@ -67,14 +67,14 @@ public class VentanaController implements Initializable {
     }
 
     @FXML
-    private void adictivoGenerar(ActionEvent event) {
+    private void aditivoGenerar(ActionEvent event) {
         String noSemillasT, mT, nT;
         int noSemillas, m, n;
         int semillas[];
         
-        noSemillasT = adictivoNo.getText();
-        mT = adictivoM.getText();
-        nT = adictivoN.getText();
+        noSemillasT = aditivoNo.getText();
+        mT = aditivoM.getText();
+        nT = aditivoN.getText();
         
         try{
             noSemillas = Integer.parseInt(noSemillasT);
@@ -87,8 +87,10 @@ public class VentanaController implements Initializable {
                     semillas[i] = mensajeEntrada("Introducir Semillas", "Dame semilla "+(i+1)+" de "+noSemillas);
                 
                 archivo.error = false;
-                numeros = metodos.adictivo(semillas, m, n);
+                numeros = metodos.aditivo(semillas, m, n);
                 mostrarTabla();
+                
+                repetidos();
                 
                 guardar.setVisible(true);
             }
@@ -126,6 +128,8 @@ public class VentanaController implements Initializable {
                 archivo.error = false;
                 numeros = metodos.multiplicativo(semilla, k, g, n);
                 mostrarTabla();
+                
+                repetidos();
                 
                 guardar.setVisible(true);
             }
@@ -168,6 +172,8 @@ public class VentanaController implements Initializable {
                 archivo.error = false;
                 numeros = metodos.mixto(semilla, a, m, c, n);
                 mostrarTabla();
+                
+                repetidos();
                 
                 guardar.setVisible(true);
             }
@@ -314,7 +320,7 @@ public class VentanaController implements Initializable {
     }
     
     @FXML
-    private void adictivoInfo(ActionEvent event) {
+    private void aditivoInfo(ActionEvent event) {
         mensajeInformativo("Método congruencial adictivo",
                 "Xn = (Xn-1 - Xi-n) mod m\n\n"
                 + "Xn = Semilla(Xo>0)\n"
@@ -342,12 +348,33 @@ public class VentanaController implements Initializable {
                 + "c = Constante (c>0)\n"
                 + "m = Modulo(m>Xo, m>a y m>c)\n");
     }
-
     
-
-    
-    
-    
-
-    
+    public void repetidos(){
+        boolean repetido[] = null;
+        int seRepite;
+        boolean hayRepetidos = false;
+        String salida="";
+        
+        if(numeros!=null){
+            repetido = new boolean[numeros.length];
+            for(int i=0;i<numeros.length-1;i++){
+                if(!repetido[i]){
+                    seRepite = 1;
+                    
+                    for(int j=i+1;j<numeros.length;j++){
+                        if(numeros[i] == numeros[j]){
+                            hayRepetidos = true;
+                            repetido[j] = true;
+                            seRepite++;
+                        }
+                    }
+                    
+                    if(seRepite>1)
+                        salida += "El número "+numeros[i]+" se repite "+seRepite+" veces.\n";
+                }
+            }
+            if(hayRepetidos)
+                mensajeInformativo("Información de repetidos", salida);
+        }
+    }
 }
