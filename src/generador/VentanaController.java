@@ -49,6 +49,14 @@ public class VentanaController implements Initializable {
     @FXML    private TextField adictivoNo;
     @FXML    private TextField adictivoM;
     @FXML    private TextField adictivoN;
+    @FXML
+    private TextField multiN;
+    @FXML
+    private TextField multiK;
+    @FXML
+    private TextField multiG;
+    @FXML
+    private TextField multiSemilla;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,6 +106,45 @@ public class VentanaController implements Initializable {
     }
     
     @FXML
+    private void multiGenerar(ActionEvent event) {
+        String semillaT, kT, gT, nT;
+        int semilla, k, g,  n;
+        
+        semillaT = multiSemilla.getText();
+        kT = multiK.getText();
+        gT = multiG.getText();
+        nT = multiN.getText();
+        
+        try{
+            semilla = Integer.parseInt(semillaT);
+            k = Integer.parseInt(kT);
+            g = Integer.parseInt(gT);
+            n = Integer.parseInt(nT);
+            
+            if(semilla>0 && k>0 && g>0 && n>0){
+                
+                archivo.error = false;
+                numeros = metodos.multiplicativo(semilla, k, g, n);
+                mostrarTabla();
+                
+                guardar.setVisible(true);
+            }
+            else
+                mensajeError("Error",
+                        "Xn+1 = (a Xn + c) mod m\n\n"
+                        + "Xo = Semilla(Xo>0)\n"
+                        + "a = Multiplicador(a>0)\n"
+                        + "c = Constante (c>0)\n"
+                        + "m = Modulo(m>Xo, m>a y m>c)\n\n"
+                        + "m = 2^g\n"
+                        + "a = 5 + 8c");
+            
+        }catch(NumberFormatException  e){
+            mensajeError("Error", "Introduce solo números enteros");
+        }
+    }
+    
+    @FXML
     private void mixtoGenerar(ActionEvent event) {
         String semillaT, mT, aT, cT, nT;
         int semilla, m, a, c, n;
@@ -135,8 +182,6 @@ public class VentanaController implements Initializable {
         }catch(NumberFormatException  e){
             mensajeError("Error", "Introduce solo números enteros");
         }
-        
-        
     }
     
     public void mostrarTabla()
@@ -272,19 +317,35 @@ public class VentanaController implements Initializable {
     private void adictivoInfo(ActionEvent event) {
         mensajeInformativo("Método congruencial adictivo",
                 "Xn = (Xn-1 - Xi-n) mod m\n\n"
-                        + "Xn = Semilla(Xo>0)\n"
-                        + "m = Modulo\n");
+                + "Xn = Semilla(Xo>0)\n"
+                + "m = Modulo\n");
+    }
+    
+    @FXML
+    private void multiInfo(ActionEvent event) {
+        mensajeInformativo("Método congruencial multiplicativo",
+                "Xn+1 = (a Xn + c) mod m\n\n"
+                + "Xo = Semilla(Xo>0)\n"
+                + "a = Multiplicador(a>0)\n"
+                + "c = Constante (c>0)\n"
+                + "m = Modulo(m>Xo, m>a y m>c)\n\n"
+                + "m = 2^g\n"
+                + "a = 5 + 8c");
     }
 
     @FXML
     private void mixtoInfo(ActionEvent event) {
         mensajeInformativo("Método congruencial mixto",
-                "Xn+1 = (a Xn + c) mod m, n>=0\n\n"
+                "Xn+1 = (a Xn) mod m\n\n"
                 + "Xo = Semilla(Xo>0)\n"
-                        + "a = Multiplicador(a>0)\n"
-                        + "c = Constante (c>0)\n"
-                        + "m = Modulo(m>Xo, m>a y m>c)\n");
+                + "a = Multiplicador(a>0)\n"
+                + "c = Constante (c>0)\n"
+                + "m = Modulo(m>Xo, m>a y m>c)\n");
     }
+
+    
+
+    
     
     
 

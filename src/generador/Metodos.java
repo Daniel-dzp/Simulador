@@ -21,6 +21,26 @@ public class Metodos {
         return numeros;
     }
     
+    public double[] multiplicativo(int semilla, int constante, int g, int noVariables){
+        double seudoNumeros[];
+        double r=0;
+        float x0=0;
+        int a=0, xn=0, modulo=0;
+       
+        modulo = (int) Math.pow(2, g);
+        
+        seudoNumeros = new double[noVariables];
+        a = 5 + (8*constante);
+        
+        for (int i = 0; i < seudoNumeros.length; i++) {
+            semilla = (a*semilla)%modulo;
+            r = (double)semilla / (modulo-1);
+            r = (double)((int)(r*10000))/10000;
+            seudoNumeros[i] = r;
+        }   
+        return seudoNumeros;   
+    }
+    
     public double[] adictivo(int semillas[], int m, int n){
         double numeros[] = null;
         double semillasGeneradas[];
