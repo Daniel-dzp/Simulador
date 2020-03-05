@@ -1,4 +1,4 @@
-package generador;
+package principal;
 
 import java.io.IOException;
 import javafx.application.Application;
@@ -12,20 +12,19 @@ import javafx.stage.WindowEvent;
 /**
  * @author dzp
  */
-public class GeneradorDeSeudoNumeros extends Application {
+public class Main extends Application {
     
     @Override
-    public void start(Stage stage) throws IOException
-    {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Ventana.fxml"));        
+    public void start(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));        
         Parent sceneMain = loader.load();
         
-        VentanaController controller = loader.<VentanaController>getController();
+        MenuController controller = loader.<MenuController>getController();
         
         Scene scene = new Scene(sceneMain/*, 1220, 650*/);
         stage.setScene(scene);
         
-        stage.setTitle("Generador de numeros seudo aleatorios");
+        stage.setTitle("Simulador");
         stage.show();
         
         stage.setOnCloseRequest(new EventHandler<WindowEvent>()
@@ -40,5 +39,6 @@ public class GeneradorDeSeudoNumeros extends Application {
     
     public static void main(String[] args) {
         launch(args);
-    }    
+    }
+    
 }
