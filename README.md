@@ -1,2 +1,3 @@
-# generador
-Generador de numeros seudo aleatorios
+# Simulador
+Etapa de generación de numeros seudo aleatorios.
+Verificar si los numeros son aleatorios.
