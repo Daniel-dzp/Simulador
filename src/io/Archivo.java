@@ -13,15 +13,16 @@ import java.io.IOException;
 public class Archivo{
     public String errorMensaje = "";
     public boolean error = false;
+    public String archivo;
     
-    public Archivo(){
-    
+    public Archivo(String archivo){
+        this.archivo = archivo;
     }
     
     public void guardar(double datos[]) throws IOException
     {   
         //FileWriter archivo = new FileWriter("binario.bin");
-        FileOutputStream arch = new FileOutputStream("binario.bin", true);
+        FileOutputStream arch = new FileOutputStream(this.archivo, true);
         DataOutputStream archivo = new DataOutputStream(arch);
         
         for(int i=0;i<datos.length;i++){

@@ -58,7 +58,7 @@ public class VentanaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         metodos = new Metodos();
-        archivo = new Archivo();
+        archivo = new Archivo("binario.bin");
         
         guardar.setVisible(false);
     }

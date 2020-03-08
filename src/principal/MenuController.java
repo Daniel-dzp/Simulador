@@ -24,11 +24,11 @@ public class MenuController implements Initializable {
     @FXML
     private void generar(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        Parent rootConsultaVehiculos = null;
+        Parent root = null;
         try
         {
-            rootConsultaVehiculos = loader.load(getClass().getResource("/generador/Ventana.fxml"));
-            Scene scene = new Scene(rootConsultaVehiculos);
+            root = loader.load(getClass().getResource("/generador/Ventana.fxml"));
+            Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
@@ -39,12 +39,13 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void verificar(ActionEvent event) {FXMLLoader loader = new FXMLLoader();
-        Parent rootConsultaVehiculos = null;
+    private void verificar(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
         try
         {
-            rootConsultaVehiculos = loader.load(getClass().getResource("/pruebas/VentanaPruebas.fxml"));
-            Scene scene = new Scene(rootConsultaVehiculos);
+            root = loader.load(getClass().getResource("/pruebas/VentanaPruebas.fxml"));
+            Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();

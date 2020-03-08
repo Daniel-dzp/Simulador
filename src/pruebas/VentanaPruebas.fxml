@@ -1,10 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="647.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="pruebas.VentanaPruebasController">
+<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="647.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pruebas.VentanaPruebasController">
     <stylesheets>
-        <URL value="@ventanapruebas.css" />
+        <URL value="@../../../generador/src/pruebas/ventanapruebas.css" />
     </stylesheets>
+   <children>
+      <TableView fx:id="tabla" layoutX="14.0" layoutY="67.0" prefHeight="433.0" prefWidth="342.0" />
+      <CheckBox fx:id="seleccionarTodos" layoutX="398.0" layoutY="58.0" mnemonicParsing="false" onAction="#seleccionarTodos" text="Seleccionar todos" />
+      <CheckBox fx:id="pruebaP" layoutX="398.0" layoutY="89.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Promedios" />
+      <CheckBox fx:id="pruebaChi" layoutX="398.0" layoutY="120.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Chi-cuadrada" />
+      <CheckBox fx:id="pruebaK" layoutX="398.0" layoutY="155.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Kolmogoriv" />
+      <CheckBox fx:id="pruebaC" layoutX="398.0" layoutY="187.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Corridas" />
+      <CheckBox fx:id="pruebaH" layoutX="398.0" layoutY="222.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Huecos" />
+      <CheckBox fx:id="pruebaA" layoutX="398.0" layoutY="258.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Autocorrelación" />
+      <CheckBox fx:id="pruebaPo" layoutX="398.0" layoutY="294.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Poker" />
+      <CheckBox fx:id="resultadoP" disable="true" indeterminate="true" layoutX="530.0" layoutY="89.0" mnemonicParsing="false" opacity="0.99" />
+      <CheckBox fx:id="resultadoChi" disable="true" layoutX="530.0" layoutY="120.0" mnemonicParsing="false" opacity="0.99" />
+      <CheckBox fx:id="resultadoK" disable="true" layoutX="530.0" layoutY="155.0" mnemonicParsing="false" opacity="0.99" />
+      <CheckBox fx:id="resultadoC" disable="true" layoutX="530.0" layoutY="187.0" mnemonicParsing="false" opacity="0.99" />
+      <CheckBox fx:id="resultadoH" disable="true" layoutX="530.0" layoutY="222.0" mnemonicParsing="false" opacity="0.99" />
+      <CheckBox fx:id="resultadoA" disable="true" layoutX="530.0" layoutY="258.0" mnemonicParsing="false" opacity="0.99" />
+      <CheckBox fx:id="resultadoPo" disable="true" layoutX="530.0" layoutY="294.0" mnemonicParsing="false" opacity="0.99" />
+      <Button fx:id="detallesP" disable="true" layoutX="564.0" layoutY="85.0" mnemonicParsing="false" onAction="#detallesP" text="Detalles" />
+      <Button fx:id="detallesChi" disable="true" layoutX="564.0" layoutY="116.0" mnemonicParsing="false" onAction="#detallesChi" text="Detalles" />
+      <Button fx:id="detallesK" disable="true" layoutX="564.0" layoutY="151.0" mnemonicParsing="false" onAction="#detallesK" text="Detalles" />
+      <Button fx:id="detallesC" disable="true" layoutX="564.0" layoutY="183.0" mnemonicParsing="false" onAction="#detallesC" text="Detalles" />
+      <Button fx:id="detallesH" disable="true" layoutX="564.0" layoutY="218.0" mnemonicParsing="false" onAction="#detallesH" text="Detalles" />
+      <Button fx:id="detallesA" disable="true" layoutX="564.0" layoutY="254.0" mnemonicParsing="false" onAction="#detallesA" text="Detalles" />
+      <Button fx:id="detallesPo" disable="true" layoutX="564.0" layoutY="290.0" mnemonicParsing="false" onAction="#detallesPo" text="Detalles" />
+      <Button layoutX="115.0" layoutY="31.0" mnemonicParsing="false" onAction="#cargarNumeros" text="Cargar Numeros" />
+      <Label layoutX="427.0" layoutY="26.0" text="Pruebas" />
+      <Label layoutX="512.0" layoutY="26.0" text="Resultado" />
+      <Label layoutX="142.0" layoutY="6.0" text="Números" />
+      <TextField fx:id="entradaN" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="92.0" promptText="Número de valores" text="100" />
+      <Button fx:id="verificar" disable="true" layoutX="394.0" layoutY="345.0" mnemonicParsing="false" onAction="#verificar" text="Verificar" />
+      <Button fx:id="guardar" disable="true" layoutX="488.0" layoutY="345.0" mnemonicParsing="false" onAction="#guardar" text="Guardar Aleatorios" />
+   </children>
 </AnchorPane>
