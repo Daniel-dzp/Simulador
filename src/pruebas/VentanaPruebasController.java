@@ -29,6 +29,7 @@ import javafx.util.Callback;
 import principal.MenuController;
 import pruebas.pruebas.Huecos;
 import pruebas.pruebas.Kolmogorov;
+import pruebas.pruebas.Promedios;
 
 /**
  * @author dzp
@@ -86,6 +87,7 @@ public class VentanaPruebasController implements Initializable {
     @FXML
     private Button guardar;
     
+    Promedios promedios;
     Kolmogorov kolmogorov;
     Huecos huecos;
     
@@ -131,6 +133,7 @@ public class VentanaPruebasController implements Initializable {
         if(pruebaP.selectedProperty().getValue())
         {
             detallesP.setDisable(false);
+            pruebaPromedios();
         }
         if(pruebaChi.selectedProperty().getValue())
         {
@@ -158,6 +161,15 @@ public class VentanaPruebasController implements Initializable {
         {
             detallesPo.setDisable(false);
         }
+    }
+    
+    private void pruebaPromedios(){
+        promedios = new Promedios(numeros, 5);
+        promedios.metodo();
+        if(promedios.correcta)
+            resultadoP.setSelected(true);
+        else
+            resultadoP.setIndeterminate(true);
     }
     
     private void pruebaKolmogorov(){
@@ -282,6 +294,7 @@ public class VentanaPruebasController implements Initializable {
 
     @FXML
     private void detallesP(ActionEvent event) {
+        ventanaDetalles(promedios.procedimiento, promedios.hipotesis);
     }
 
     @FXML

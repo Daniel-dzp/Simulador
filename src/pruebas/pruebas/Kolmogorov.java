@@ -67,6 +67,7 @@ public class Kolmogorov {
         hipotesis += "|Max D+| = "+String.format("%1.4f", dmax)+"\n";
         hipotesis += "|Max D-| = "+String.format("%1.4f", dmenos)+"\n";
         hipotesis += "α = "+alfa+"\n";
+        hipotesis += "N = "+n+"\n";
         d = Math.max(dmax, dmenos);
         hipotesis += "|Max D+,D-| = "+d+" = Dn\n";
         if(n>100)
