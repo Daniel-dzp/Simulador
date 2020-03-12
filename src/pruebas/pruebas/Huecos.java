@@ -243,7 +243,7 @@ public class Huecos {
         }
         else
         {
-            hipotesis += String.format("Dα = D"+alfa+" = "+Dalfa+"\n");
+            hipotesis += String.format("Dα = "+Dalfa+"\n");
         }
         
         

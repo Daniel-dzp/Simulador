@@ -28,6 +28,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import principal.MenuController;
 import pruebas.pruebas.Huecos;
+import pruebas.pruebas.Kolmogorov;
 
 /**
  * @author dzp
@@ -85,6 +86,7 @@ public class VentanaPruebasController implements Initializable {
     @FXML
     private Button guardar;
     
+    Kolmogorov kolmogorov;
     Huecos huecos;
     
     @Override
@@ -137,6 +139,7 @@ public class VentanaPruebasController implements Initializable {
         if(pruebaK.selectedProperty().getValue())
         {
             detallesK.setDisable(false);
+            pruebaKolmogorov();
         }
         if(pruebaC.selectedProperty().getValue())
         {
@@ -156,6 +159,17 @@ public class VentanaPruebasController implements Initializable {
             detallesPo.setDisable(false);
         }
     }
+    
+    private void pruebaKolmogorov(){
+        kolmogorov = new Kolmogorov(numeros, 5);
+        kolmogorov.metodo();
+        if(kolmogorov.correcta)
+            resultadoK.setSelected(true);
+        else
+            resultadoK.setIndeterminate(true);
+        
+    }
+    
     private void pruebaHuecos(){
         huecos = new Huecos(numeros, true, 4, 12, 5);
         huecos.metodo();
@@ -276,6 +290,7 @@ public class VentanaPruebasController implements Initializable {
 
     @FXML
     private void detallesK(ActionEvent event) {
+        ventanaDetalles(kolmogorov.procedimiento, kolmogorov.hipotesis);
     }
 
     @FXML
