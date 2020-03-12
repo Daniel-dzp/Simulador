@@ -26,6 +26,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import principal.MenuController;
 import pruebas.pruebas.Huecos;
 
 /**
@@ -115,6 +116,16 @@ public class VentanaPruebasController implements Initializable {
         detallesA.setDisable(true);
         detallesPo.setDisable(true);
         
+        resultadoP.setSelected(false);
+        resultadoChi.setSelected(false);
+        resultadoK.setSelected(false);
+        resultadoC.setSelected(false);
+        resultadoH.setSelected(false);
+        resultadoA.setSelected(false);
+        resultadoPo.setSelected(false);
+        
+        
+        
         if(pruebaP.selectedProperty().getValue())
         {
             detallesP.setDisable(false);
@@ -146,9 +157,12 @@ public class VentanaPruebasController implements Initializable {
         }
     }
     private void pruebaHuecos(){
-        huecos = new Huecos(numeros, true, 4);
-        
+        huecos = new Huecos(numeros, true, 4, 12, 5);
         huecos.metodo();
+        if(huecos.correcta)
+            resultadoH.setSelected(true);
+        else
+            resultadoH.setIndeterminate(true);
     }
     
 
@@ -295,6 +309,23 @@ public class VentanaPruebasController implements Initializable {
             Stage s = new Stage();
             s.setScene(new Scene(p));
             s.show();
+        }catch(IOException e2)
+        {
+            e2.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void mostrarTablas(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+        try
+        {
+            root = loader.load(getClass().getResource("/pruebas/Tablas.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
         }catch(IOException e2)
         {
             e2.printStackTrace();

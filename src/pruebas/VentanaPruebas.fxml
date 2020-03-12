@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="647.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pruebas.VentanaPruebasController">
+<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="642.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pruebas.VentanaPruebasController">
     <stylesheets>
         <URL value="@../../../generador/src/pruebas/ventanapruebas.css" />
     </stylesheets>
@@ -22,7 +22,7 @@
       <CheckBox fx:id="pruebaH" layoutX="398.0" layoutY="222.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Huecos" />
       <CheckBox fx:id="pruebaA" layoutX="398.0" layoutY="258.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Autocorrelación" />
       <CheckBox fx:id="pruebaPo" layoutX="398.0" layoutY="294.0" mnemonicParsing="false" onAction="#desSeleccionarTodos" text="Poker" />
-      <CheckBox fx:id="resultadoP" disable="true" indeterminate="true" layoutX="530.0" layoutY="89.0" mnemonicParsing="false" opacity="0.99" />
+      <CheckBox fx:id="resultadoP" disable="true" layoutX="530.0" layoutY="89.0" mnemonicParsing="false" opacity="0.99" />
       <CheckBox fx:id="resultadoChi" disable="true" layoutX="530.0" layoutY="120.0" mnemonicParsing="false" opacity="0.99" />
       <CheckBox fx:id="resultadoK" disable="true" layoutX="530.0" layoutY="155.0" mnemonicParsing="false" opacity="0.99" />
       <CheckBox fx:id="resultadoC" disable="true" layoutX="530.0" layoutY="187.0" mnemonicParsing="false" opacity="0.99" />
@@ -43,5 +43,6 @@
       <TextField fx:id="entradaN" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="92.0" promptText="Número de valores" text="100" />
       <Button fx:id="verificar" disable="true" layoutX="394.0" layoutY="345.0" mnemonicParsing="false" onAction="#verificar" text="Verificar" />
       <Button fx:id="guardar" disable="true" layoutX="488.0" layoutY="345.0" mnemonicParsing="false" onAction="#guardar" text="Guardar Aleatorios" />
+      <Button layoutX="393.0" layoutY="389.0" mnemonicParsing="false" onAction="#mostrarTablas" text="Mostrar tablas" />
    </children>
 </AnchorPane>

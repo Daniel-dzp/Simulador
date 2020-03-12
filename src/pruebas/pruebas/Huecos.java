@@ -1,5 +1,6 @@
 package pruebas.pruebas;
 
+import Estadisticos.EstadisticoKolmogorov;
 import java.util.ArrayList;
 
 /**
@@ -9,13 +10,19 @@ public class Huecos {
     int numeros[];
     public String procedimiento;
     public String hipotesis;
-    public Huecos(double numeros[], boolean esDecimal,int noDigitos){
+    public int noIntervalos;
+    public boolean correcta=false;
+    public int alfa;
+    EstadisticoKolmogorov estadistico;
+    public Huecos(double numeros[], boolean esDecimal,int noDigitos,int noIntervalos,int alfa){
         int temp;
         char a;
         
+        estadistico = new EstadisticoKolmogorov();
         procedimiento = "";
         hipotesis = "";
-        
+        this.noIntervalos = noIntervalos;
+        this.alfa = alfa;
         if(esDecimal)
         {
             this.numeros = new int[numeros.length*noDigitos];
@@ -46,7 +53,7 @@ public class Huecos {
         int noDeHuecosTotales = 0;
         int tablaHuecosTotales[][];
         int dato=0, noHuecos=0, contadorN=0;
-        double tabla[][] = new double[12][7];
+        double tabla[][];
         int a, b;
         double max = -1;
         double D, Dalfa;
@@ -143,16 +150,26 @@ public class Huecos {
             procedimiento += String.format("%3d ", tablaHuecosTotales[1][i]);
         }
         
+        // calcular longitud de intervalos
+        int longitudMax = -1;
+        for(int i=0;i<listaTablas.size();i++)
+        {
+            tablaHuecos = listaTablas.get(i);
+            for(int j=0;j<tablaHuecos.length;j++)
+                longitudMax = Math.max(longitudMax, tablaHuecos[j]);
+        }
+        int longitudIntervalo = (int) Math.ceil(longitudMax/noIntervalos);
+        System.out.println(longitudIntervalo);
         
         // calcular la tabla
         // longitud hueco = i*4, i*4+3
-        tabla = new double[12][7];
+        tabla = new double[noIntervalos][7];
         
         for(int i=0;i<tabla.length;i++)
         {
             // calcular la Frecuencia
-            a = i*4;
-            b = i*4+3;
+            a = i*longitudIntervalo;
+            b = i*longitudIntervalo+longitudIntervalo-1;
             
             // calcular la Frecuencia
             tabla[i][0] = contarFrecuencias(a,b, listaTablas);
@@ -187,8 +204,8 @@ public class Huecos {
         procedimiento += String.format("%-12s %-12s %-13s %-20s %-5s %-13s %-20s %-15s\n","Long Hueco","Frecuencia","F. Relativa","F.R. Acomulada S(x)","x+1","(0.9)^(x+1)","F(x)=1-(0.9)^(x+1)","|F(x)-S(x)|");
         for(int i=0;i<tabla.length;i++)
         {
-            a = i*4;
-            b = i*4+3;
+            a = i*longitudIntervalo;
+            b = i*longitudIntervalo+longitudIntervalo-1;
             procedimiento += String.format("%2d-%2d%7s ",a,b,"");
             procedimiento += String.format("%3.0f%9s ",tabla[i][0],"");
             procedimiento += String.format("%1.2f%9s ",tabla[i][1],"");
@@ -204,16 +221,43 @@ public class Huecos {
         max = (double)((int)(max*10000))/10000;
         
         D = max;
-        Dalfa = (1.6/Math.sqrt(noDeHuecosTotales));
+        Dalfa = estadistico.estadistico(alfa, noDeHuecosTotales);
         hipotesis += String.format("\nD = max |F(x)-S(x)| = "+ D+"\n");
-        hipotesis += String.format("Dα = 1.36/√(N) = "+"1.36/√("+noDeHuecosTotales+") = "+Dalfa+"\n");
+        hipotesis += "N = "+noDeHuecosTotales+"\n";
+        hipotesis += "α = "+alfa+"\n";
+        
+        if(noDeHuecosTotales>100)
+        {
+            switch(alfa)
+            {
+                case 10:
+                    hipotesis += String.format("Dα = 1.22/√(N)\n\t= "+"1.22/√("+noDeHuecosTotales+")\n\t= "+Dalfa+"\n");
+                    break;
+                case 5: 
+                    hipotesis += String.format("Dα = 1.36/√(N)\n\t= "+"1.36/√("+noDeHuecosTotales+")\n\t= "+Dalfa+"\n");
+                    break;
+                case 1: 
+                    hipotesis += String.format("Dα = 1.63/√(N)\n\t= "+"1.63/√("+noDeHuecosTotales+")\n\t= "+Dalfa+"\n");
+                    break;
+            }
+        }
+        else
+        {
+            hipotesis += String.format("Dα = D"+alfa+" = "+Dalfa+"\n");
+        }
+        
+        
         
         if(D<Dalfa)
-            hipotesis += String.format("Ho: los datos son estadisticamente independientes"+"\n");
+        {
+            hipotesis += String.format("Ho (D<Dα) \n los datos son estadisticamente independientes"+"\n");
+            correcta = true;
+        }
         else
-            hipotesis += String.format("H1: los datos no son estadisticamente independientes"+"\n");
-        
-        
+        {
+            hipotesis += String.format("H1 (D>=Dα) \n los datos no son estadisticamente independientes"+"\n");
+            correcta = false;
+        }
     }
     
     public int contarFrecuencias(int a, int b, ArrayList<Integer[]> listaTablas)
