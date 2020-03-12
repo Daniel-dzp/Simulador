@@ -16,7 +16,6 @@ public class Promedios {
         hipotesis = "";
     }
     
-    
     public void metodo()
     {
         double media, z;

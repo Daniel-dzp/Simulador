@@ -128,6 +128,14 @@ public class VentanaPruebasController implements Initializable {
         resultadoA.setSelected(false);
         resultadoPo.setSelected(false);
         
+        resultadoP.setIndeterminate(false);
+        resultadoChi.setIndeterminate(false);
+        resultadoK.setIndeterminate(false);
+        resultadoC.setIndeterminate(false);
+        resultadoH.setIndeterminate(false);
+        resultadoA.setIndeterminate(false);
+        resultadoPo.setIndeterminate(false);
+        
         
         
         if(pruebaP.selectedProperty().getValue())
