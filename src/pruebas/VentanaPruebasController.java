@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import principal.MenuController;
+import pruebas.pruebas.ChiCuadrada;
 import pruebas.pruebas.Huecos;
 import pruebas.pruebas.Kolmogorov;
 import pruebas.pruebas.Promedios;
@@ -88,6 +89,7 @@ public class VentanaPruebasController implements Initializable {
     private Button guardar;
     
     Promedios promedios;
+    ChiCuadrada chiCuadrada;
     Kolmogorov kolmogorov;
     Huecos huecos;
     
@@ -146,6 +148,7 @@ public class VentanaPruebasController implements Initializable {
         if(pruebaChi.selectedProperty().getValue())
         {
             detallesChi.setDisable(false);
+            pruebaChiCuadrada();
         }
         if(pruebaK.selectedProperty().getValue())
         {
@@ -178,6 +181,15 @@ public class VentanaPruebasController implements Initializable {
             resultadoP.setSelected(true);
         else
             resultadoP.setIndeterminate(true);
+    }
+    
+    private void pruebaChiCuadrada(){
+        chiCuadrada = new ChiCuadrada(numeros, 5, 5);
+        chiCuadrada.metodo();
+        if(chiCuadrada.correcta)
+            resultadoChi.setSelected(true);
+        else
+            resultadoChi.setIndeterminate(true);
     }
     
     private void pruebaKolmogorov(){
@@ -307,6 +319,7 @@ public class VentanaPruebasController implements Initializable {
 
     @FXML
     private void detallesChi(ActionEvent event) {
+        ventanaDetalles(chiCuadrada.procedimiento, chiCuadrada.hipotesis);
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package pruebas;
 
+import Estadisticos.EstadisticoChiCuadrada;
 import Estadisticos.EstadisticoKolmogorov;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,12 +18,15 @@ import javafx.scene.control.TextArea;
 public class TablasController implements Initializable {
     ObservableList<String> items = FXCollections.observableArrayList();
     @FXML    private ComboBox<String> select;
-    EstadisticoKolmogorov ek;
     @FXML    private TextArea textArea;
+    
+    EstadisticoKolmogorov ek;
+    EstadisticoChiCuadrada eC;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ek = new EstadisticoKolmogorov();
+        eC = new EstadisticoChiCuadrada();
         
         items.add("Distribución  chi-2");
         items.add("Distribución normal");
@@ -40,8 +44,8 @@ public class TablasController implements Initializable {
         textArea.setText("");
         switch(select.getSelectionModel().getSelectedIndex())
         {
-            case 0: break;
-            case 1: break;
+            case 0: textArea.setText(eC.getTabla()); break;
+            case 1:  break;
             case 2: textArea.setText(ek.getTabla()); break;
         }
     }
