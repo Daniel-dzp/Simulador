@@ -93,9 +93,10 @@ public class VentanaPruebasController implements Initializable {
     Kolmogorov kolmogorov;
     Huecos huecos;
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        archivo = new Archivo("binario.bin");
+        archivo = new Archivo("numerosAleatorios.bin");
         
         
     }
@@ -172,6 +173,8 @@ public class VentanaPruebasController implements Initializable {
         {
             detallesPo.setDisable(false);
         }
+        
+        guardar.setDisable(false);
     }
     
     private void pruebaPromedios(){
@@ -213,7 +216,10 @@ public class VentanaPruebasController implements Initializable {
     
 
     @FXML
-    private void guardar(ActionEvent event) {
+    private void guardar(ActionEvent event) throws IOException {
+        archivo.guardar(numeros);
+        guardar.setVisible(false);
+        mensajeInformativo("Numeros","Se guardaron correctamente los números");
     }
 
     @FXML

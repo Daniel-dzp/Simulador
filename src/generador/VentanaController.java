@@ -23,6 +23,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import mensajes.Mensajes;
 
 /**
  * FXML Controller class
@@ -81,7 +82,7 @@ public class VentanaController implements Initializable {
             if(noSemillas>1 && m>0  && n>0){
                 semillas = new int[noSemillas];
                 for(int i=0;i<noSemillas;i++)
-                    semillas[i] = mensajeEntrada("Introducir Semillas", "Dame semilla "+(i+1)+" de "+noSemillas);
+                    semillas[i] = Mensajes.mensajeEntradaG("Introducir Semillas", "Dame semilla "+(i+1)+" de "+noSemillas);
                 
                 archivo.error = false;
                 numeros = metodos.aditivo(semillas, m, n);
@@ -92,13 +93,13 @@ public class VentanaController implements Initializable {
                 guardar.setVisible(true);
             }
             else
-                mensajeError("Error",
+                Mensajes.mensajeError("Error",
                         "Xn = (Xn-1 - Xi-n) mod m\n\n"
                         + "Xn = Semilla(Xo>0)\n"
                         + "m = Modulo\n");
             
         }catch(NumberFormatException  e){
-            mensajeError("Error", "Introduce solo números enteros");
+            Mensajes.mensajeError("Error", "Introduce solo números enteros");
         }
         
         
@@ -131,7 +132,7 @@ public class VentanaController implements Initializable {
                 guardar.setVisible(true);
             }
             else
-                mensajeError("Error",
+                Mensajes.mensajeError("Error",
                         "Xn+1 = (a Xn + c) mod m\n\n"
                         + "Xo = Semilla(Xo>0)\n"
                         + "a = Multiplicador(a>0)\n"
@@ -141,7 +142,7 @@ public class VentanaController implements Initializable {
                         + "a = 5 + 8c");
             
         }catch(NumberFormatException  e){
-            mensajeError("Error", "Introduce solo números enteros");
+            Mensajes.mensajeError("Error", "Introduce solo números enteros");
         }
     }
     
@@ -175,7 +176,7 @@ public class VentanaController implements Initializable {
                 guardar.setVisible(true);
             }
             else
-                mensajeError("Error",
+                Mensajes.mensajeError("Error",
                         "Xn+1 = (a Xn + c) mod m, n>=0\n\n"
                         + "Xo = Semilla(Xo>0)\n"
                         + "a = Multiplicador(a>0)\n"
@@ -183,7 +184,7 @@ public class VentanaController implements Initializable {
                         + "m = Modulo(m>Xo, m>a y m>c)\n");
             
         }catch(NumberFormatException  e){
-            mensajeError("Error", "Introduce solo números enteros");
+            Mensajes.mensajeError("Error", "Introduce solo números enteros");
         }
     }
     
@@ -226,14 +227,14 @@ public class VentanaController implements Initializable {
         //    mensajeError("Error", archivo.errorMensaje);
         
         if(archivo.error)
-            mensajeError("Error", archivo.errorMensaje);
+            Mensajes.mensajeError("Error", archivo.errorMensaje);
     }
 
     @FXML
     private void guardar(ActionEvent event) throws IOException {
         archivo.guardar(numeros);
         guardar.setVisible(false);
-        mensajeInformativo("Numeros","Se guardaron correctamente los números");
+        Mensajes.mensajeInformativo("Numeros","Se guardaron correctamente los números");
     }
     
     @FXML
@@ -252,9 +253,9 @@ public class VentanaController implements Initializable {
                 mostrarTabla();
             }
             else
-                mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
+                Mensajes.mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
         }catch(NumberFormatException  e){
-            mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
+            Mensajes.mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
         }
     }
 
@@ -269,56 +270,11 @@ public class VentanaController implements Initializable {
     
     
     
-    public void mensajeInformativo(String titulo, String contenido)
-    {
-        Alert dialogo = new Alert(Alert.AlertType.INFORMATION);
-        
-        dialogo.setTitle(titulo);
-        dialogo.setHeaderText(null);
-        dialogo.setContentText(contenido);
-        dialogo.initStyle(StageStyle.UTILITY);
-        
-        dialogo.showAndWait();
-    }
     
-    public void mensajeError(String titulo, String contenido)
-    {
-        Alert dialogo = new Alert(Alert.AlertType.ERROR);
-        
-        dialogo.setTitle(titulo);
-        dialogo.setHeaderText(null);
-        dialogo.setContentText(contenido);
-        dialogo.initStyle(StageStyle.UTILITY);
-        
-        dialogo.showAndWait();
-    }
-    
-    public int mensajeEntrada(String titulo, String contenido)
-    {
-        TextInputDialog dialogo = new TextInputDialog();
-        dialogo.setTitle(titulo);
-        dialogo.setHeaderText(null);
-        dialogo.setContentText(contenido);
-        dialogo.initStyle(StageStyle.UTILITY);
-        
-        Optional<String> entrada = dialogo.showAndWait();
-        
-        if(entrada.isPresent())
-        {
-            try{
-                return Integer.parseInt(entrada.get());
-            }catch(NumberFormatException  e){
-                return mensajeEntrada(titulo, contenido);
-            }
-            
-        }
-        else
-            return mensajeEntrada(titulo, contenido);
-    }
     
     @FXML
     private void aditivoInfo(ActionEvent event) {
-        mensajeInformativo("Método congruencial aditivo",
+        Mensajes.mensajeInformativo("Método congruencial aditivo",
                 "Xn = (Xn-1 - Xi-n) mod m\n\n"
                 + "Xn = Semilla(Xo>0)\n"
                 + "m = Modulo\n");
@@ -326,7 +282,7 @@ public class VentanaController implements Initializable {
     
     @FXML
     private void multiInfo(ActionEvent event) {
-        mensajeInformativo("Método congruencial multiplicativo",
+        Mensajes.mensajeInformativo("Método congruencial multiplicativo",
                 "Xn+1 = (a Xn + c) mod m\n\n"
                 + "Xo = Semilla(Xo>0)\n"
                 + "a = Multiplicador(a>0)\n"
@@ -338,7 +294,7 @@ public class VentanaController implements Initializable {
 
     @FXML
     private void mixtoInfo(ActionEvent event) {
-        mensajeInformativo("Método congruencial mixto",
+        Mensajes.mensajeInformativo("Método congruencial mixto",
                 "Xn+1 = (a Xn) mod m\n\n"
                 + "Xo = Semilla(Xo>0)\n"
                 + "a = Multiplicador(a>0)\n"
@@ -371,7 +327,7 @@ public class VentanaController implements Initializable {
                 }
             }
             if(hayRepetidos)
-                mensajeInformativo("Información de repetidos", salida);
+                Mensajes.mensajeInformativo("Información de repetidos", salida);
         }
     }
 }
