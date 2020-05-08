@@ -10,13 +10,13 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pruebas.VentanaDetallesController">
    <center>
-      <TextArea fx:id="procedimiento" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TextArea fx:id="procedimiento" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <font>
             <Font name="Consolas" size="12.0" />
          </font></TextArea>
    </center>
    <right>
-      <TextArea fx:id="hipotesis" prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+      <TextArea fx:id="hipotesis" editable="false" prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <font>
             <Font name="Consolas" size="12.0" />
          </font></TextArea>

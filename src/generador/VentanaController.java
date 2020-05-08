@@ -59,7 +59,7 @@ public class VentanaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         metodos = new Metodos();
-        archivo = new Archivo("binario.bin");
+        archivo = new Archivo("numerosSeudoAleatorios.bin");
         
         guardar.setVisible(false);
     }
@@ -232,7 +232,7 @@ public class VentanaController implements Initializable {
 
     @FXML
     private void guardar(ActionEvent event) throws IOException {
-        archivo.guardar(numeros);
+        archivo.guardar(numeros,"numerosSeudoAleatorios.bin");
         guardar.setVisible(false);
         Mensajes.mensajeInformativo("Numeros","Se guardaron correctamente los números");
     }

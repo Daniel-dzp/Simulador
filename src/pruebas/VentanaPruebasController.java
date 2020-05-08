@@ -51,42 +51,25 @@ public class VentanaPruebasController implements Initializable {
     Archivo archivo;
     
     double numeros[];
-    @FXML
-    private TextField entradaN;
-    @FXML
-    private TableView<String[]> tabla;
-    @FXML
-    private CheckBox resultadoP;
-    @FXML
-    private CheckBox resultadoChi;
-    @FXML
-    private CheckBox resultadoK;
-    @FXML
-    private CheckBox resultadoC;
-    @FXML
-    private CheckBox resultadoH;
-    @FXML
-    private CheckBox resultadoA;
-    @FXML
-    private CheckBox resultadoPo;
-    @FXML
-    private Button detallesP;
-    @FXML
-    private Button detallesChi;
-    @FXML
-    private Button detallesK;
-    @FXML
-    private Button detallesC;
-    @FXML
-    private Button detallesH;
-    @FXML
-    private Button detallesA;
-    @FXML
-    private Button detallesPo;
-    @FXML
-    private Button verificar;
-    @FXML
-    private Button guardar;
+    
+    @FXML    private TextField entradaN;
+    @FXML    private TableView<String[]> tabla;
+    @FXML    private CheckBox resultadoP;
+    @FXML    private CheckBox resultadoChi;
+    @FXML    private CheckBox resultadoK;
+    @FXML    private CheckBox resultadoC;
+    @FXML    private CheckBox resultadoH;
+    @FXML    private CheckBox resultadoA;
+    @FXML    private CheckBox resultadoPo;
+    @FXML    private Button detallesP;
+    @FXML    private Button detallesChi;
+    @FXML    private Button detallesK;
+    @FXML    private Button detallesC;
+    @FXML    private Button detallesH;
+    @FXML    private Button detallesA;
+    @FXML    private Button detallesPo;
+    @FXML    private Button verificar;
+    @FXML    private Button guardar;
     
     Promedios promedios;
     ChiCuadrada chiCuadrada;
@@ -96,7 +79,7 @@ public class VentanaPruebasController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        archivo = new Archivo("numerosAleatorios.bin");
+        archivo = new Archivo("numerosSeudoAleatorios.bin");
         
         
     }
@@ -217,8 +200,8 @@ public class VentanaPruebasController implements Initializable {
 
     @FXML
     private void guardar(ActionEvent event) throws IOException {
-        archivo.guardar(numeros);
-        guardar.setVisible(false);
+        archivo.guardar(numeros,"numerosAleatorios.bin");
+        guardar.setDisable(true);
         mensajeInformativo("Numeros","Se guardaron correctamente los números");
     }
 

@@ -19,10 +19,10 @@ public class Archivo{
         this.archivo = archivo;
     }
     
-    public void guardar(double datos[]) throws IOException
+    public void guardar(double datos[],String nombre) throws IOException
     {   
         //FileWriter archivo = new FileWriter("binario.bin");
-        FileOutputStream arch = new FileOutputStream(this.archivo, true);
+        FileOutputStream arch = new FileOutputStream(nombre, true);
         DataOutputStream archivo = new DataOutputStream(arch);
         
         for(int i=0;i<datos.length;i++){
@@ -42,7 +42,7 @@ public class Archivo{
         
         error = false;
         try{
-            FileInputStream arch = new FileInputStream("binario.bin");
+            FileInputStream arch = new FileInputStream(this.archivo);
             DataInputStream archivo = new DataInputStream(arch);
 
             numeros = new double[n];

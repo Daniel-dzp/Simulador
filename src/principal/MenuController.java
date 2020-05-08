@@ -31,6 +31,7 @@ public class MenuController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("Generar Seudo Números");
             stage.show();
         }catch(IOException e2)
         {
@@ -48,12 +49,31 @@ public class MenuController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("Verificar Aleatoriedad");
             stage.show();
         }catch(IOException e2)
         {
             e2.printStackTrace();
         }
         
+    }
+
+    @FXML
+    private void pruebaYAjuste(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+        try
+        {
+            root = loader.load(getClass().getResource("/metodoyajuste/VentanaMA.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Prueba y ajuste");
+            stage.show();
+        }catch(IOException e2)
+        {
+            e2.printStackTrace();
+        }
     }
     
 }
