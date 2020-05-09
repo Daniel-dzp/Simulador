@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="642.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="metodoyajuste.VentanaMAController">
+<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="metodoyajuste.VentanaMAController">
     <children>
       <TableView fx:id="tabla" layoutX="14.0" layoutY="67.0" prefHeight="433.0" prefWidth="342.0" />
       <Button layoutX="115.0" layoutY="31.0" mnemonicParsing="false" onAction="#cargarNumeros" text="Cargar Numeros" />
@@ -18,7 +18,7 @@
       <TextArea fx:id="resultado" editable="false" layoutX="366.0" layoutY="158.0" prefHeight="297.0" prefWidth="263.0" />
       <Label layoutX="464.0" layoutY="67.0" text="Ajuste Chi-2" />
       <Label layoutX="471.0" layoutY="131.0" text="Resultado" />
-      <Button layoutX="545.0" layoutY="469.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
-      <Button layoutX="401.0" layoutY="469.0" mnemonicParsing="false" onAction="#verDetalles" text="Ver Detalles" />
+      <Button fx:id="guardar" layoutX="545.0" layoutY="469.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+      <Button fx:id="detalles" layoutX="401.0" layoutY="469.0" mnemonicParsing="false" onAction="#verDetalles" text="Ver Detalles" />
    </children>
 </AnchorPane>

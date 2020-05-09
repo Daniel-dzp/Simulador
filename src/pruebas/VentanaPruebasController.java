@@ -26,6 +26,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import mensajes.Mensajes;
 import principal.MenuController;
 import pruebas.pruebas.ChiCuadrada;
 import pruebas.pruebas.Huecos;
@@ -202,7 +203,7 @@ public class VentanaPruebasController implements Initializable {
     private void guardar(ActionEvent event) throws IOException {
         archivo.guardar(numeros,"numerosAleatorios.bin");
         guardar.setDisable(true);
-        mensajeInformativo("Numeros","Se guardaron correctamente los números");
+        Mensajes.mensajeInformativo("Numeros","Se guardaron correctamente los números");
     }
 
     @FXML
@@ -228,9 +229,9 @@ public class VentanaPruebasController implements Initializable {
                 verificar.setDisable(false);
             }
             else
-                mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
+                Mensajes.mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
         }catch(NumberFormatException  e){
-            mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
+            Mensajes.mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
         }
     }
     
@@ -273,32 +274,7 @@ public class VentanaPruebasController implements Initializable {
         //    mensajeError("Error", archivo.errorMensaje);
         
         if(archivo.error)
-            mensajeError("Error", archivo.errorMensaje);
-    }
-    
-    
-    public void mensajeInformativo(String titulo, String contenido)
-    {
-        Alert dialogo = new Alert(Alert.AlertType.INFORMATION);
-        
-        dialogo.setTitle(titulo);
-        dialogo.setHeaderText(null);
-        dialogo.setContentText(contenido);
-        dialogo.initStyle(StageStyle.UTILITY);
-        
-        dialogo.showAndWait();
-    }
-    
-    public void mensajeError(String titulo, String contenido)
-    {
-        Alert dialogo = new Alert(Alert.AlertType.ERROR);
-        
-        dialogo.setTitle(titulo);
-        dialogo.setHeaderText(null);
-        dialogo.setContentText(contenido);
-        dialogo.initStyle(StageStyle.UTILITY);
-        
-        dialogo.showAndWait();
+            Mensajes.mensajeError("Error", archivo.errorMensaje);
     }
 
     @FXML

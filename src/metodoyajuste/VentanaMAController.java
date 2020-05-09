@@ -1,7 +1,9 @@
 package metodoyajuste;
 
 import generador.Archivo;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,14 +12,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import mensajes.Mensajes;
+import metodoyajuste.pruebas.AceptacionYRechazo;
+import pruebas.VentanaDetallesController;
 import pruebas.pruebas.ChiCuadrada;
 
 /**
@@ -29,14 +37,25 @@ public class VentanaMAController implements Initializable {
     @FXML    private TextField entradaN;
     @FXML    private Button GA;
     @FXML    private TextArea resultado;
+    @FXML    private Button guardar;
+    @FXML    private Button detalles;
     
     Archivo archivo;
     double numeros[];
+    double numerosR[];
     ChiCuadrada chiCuadrada;
+    AceptacionYRechazo ar;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         archivo = new Archivo("numerosAleatorios.bin");
+        ar = new AceptacionYRechazo();
+        
+        
+        GA.setDisable(true);
+        guardar.setVisible(false);
+        detalles.setDisable(true);
     }    
     
     private void mostrarTabla()
@@ -96,6 +115,7 @@ public class VentanaMAController implements Initializable {
                 numeros = archivo.leer(n);
                 mostrarTabla();
                 
+                GA.setDisable(false);
             }
             else
                 Mensajes.mensajeError("Error", "Introduce solo números enteros mayores o igual a 1");
@@ -106,13 +126,54 @@ public class VentanaMAController implements Initializable {
 
     @FXML
     private void generarYAjustar(ActionEvent event) {
+        ArrayList<Double> ns = ar.AR(numeros);
+        Double ns2[] = new Double[ns.size()];
+        
+        ns2 = ns.toArray(ns2);
+        numerosR = Arrays.stream(ns2) 
+            .mapToDouble(num -> Double.parseDouble(num.toString()))
+            .toArray();
+        
+        chiCuadrada = new ChiCuadrada(numerosR, 5, 5);
+        chiCuadrada.metodo();
+        
+        if(chiCuadrada.correcta)
+            resultado.setText(ar.toString()+"\n\nSon linealmente independientes");
+        else
+            resultado.setText(ar.toString()+"\n\nNo son linealmente independientes");
+        
+        guardar.setVisible(true);
+        detalles.setDisable(false);
     }
 
     @FXML
-    private void guardar(ActionEvent event) {
+    private void guardar(ActionEvent event) throws IOException {
+        archivo.guardar(numerosR,"numerosIndependientes.bin");
+        guardar.setDisable(true);
+        Mensajes.mensajeInformativo("Numeros","Se guardaron correctamente los números");
     }
 
     @FXML
     private void verDetalles(ActionEvent event) {
+        ventanaDetalles(chiCuadrada.procedimiento, chiCuadrada.hipotesis);
+    }
+    
+    private void ventanaDetalles(String procedimiento, String hipotesis)
+    {
+        FXMLLoader loader = new FXMLLoader();
+        try
+        {
+            loader.setLocation(getClass().getResource("/pruebas/VentanaDetalles.fxml"));
+            loader.load();
+            VentanaDetallesController document = loader.getController();
+            document.setString(procedimiento,hipotesis);
+            Parent p = loader.getRoot();
+            Stage s = new Stage();
+            s.setScene(new Scene(p));
+            s.show();
+        }catch(IOException e2)
+        {
+            e2.printStackTrace();
+        }
     }
 }

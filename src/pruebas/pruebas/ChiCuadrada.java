@@ -57,6 +57,7 @@ public class ChiCuadrada {
         //Hipotesis
         hipotesis += "X2p = "+Xp+"\n";
         hipotesis += "α = "+alfa+"\n";
+        
         if(Xp<0.711)
         {
             hipotesis += "Ho La hipotesis nula se acepta.";
