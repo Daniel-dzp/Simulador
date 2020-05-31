@@ -24,7 +24,7 @@ public class Main extends Application {
         Scene scene = new Scene(sceneMain/*, 1220, 650*/);
         stage.setScene(scene);
         
-        stage.setTitle("Simulador");
+        stage.setTitle("Simulador - Equipo H");
         stage.show();
         
         stage.setOnCloseRequest(new EventHandler<WindowEvent>()

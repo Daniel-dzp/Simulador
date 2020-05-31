@@ -75,5 +75,23 @@ public class MenuController implements Initializable {
             e2.printStackTrace();
         }
     }
+
+    @FXML
+    private void simulador(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+        try
+        {
+            root = loader.load(getClass().getResource("/simulador/VentanaSimulador.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Simulador");
+            stage.show();
+        }catch(IOException e2)
+        {
+            e2.printStackTrace();
+        }
+    }
     
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simulador.VentanaSimuladorController">
+   <children>
+      <TableView layoutX="25.0" layoutY="41.0" prefHeight="200.0" prefWidth="377.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="F(x)" />
+          <TableColumn prefWidth="75.0" text="Operación" />
+            <TableColumn prefWidth="75.0" text="Distribución" />
+            <TableColumn prefWidth="75.0" text="Parametros" />
+            <TableColumn prefWidth="75.0" text="Medida" />
+        </columns>
+      </TableView>
+      <TableView layoutX="512.0" layoutY="41.0" prefHeight="200.0" prefWidth="455.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="x" />
+            <TableColumn prefWidth="75.0" text="Consulta" />
+            <TableColumn prefWidth="102.0" text="Otra" />
+          <TableColumn text="Retiro" />
+            <TableColumn prefWidth="121.0" text="Transferencia" />
+        </columns>
+      </TableView>
+      <Label layoutX="133.0" layoutY="265.0" prefHeight="17.0" prefWidth="97.0" text="Valor de media:" />
+      <TextField layoutX="224.0" layoutY="261.0" prefWidth="97.0" />
+      <Button layoutX="396.0" layoutY="312.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Generar resultados" />
+      <Label layoutX="388.0" layoutY="266.0" prefHeight="17.0" prefWidth="116.0" text="Valor de desviación:" />
+      <Label layoutX="650.0" layoutY="265.0" prefHeight="17.0" prefWidth="116.0" text="Numero de usuarios:" />
+      <TextField layoutX="501.0" layoutY="263.0" prefWidth="97.0" />
+      <TextField layoutX="770.0" layoutY="262.0" prefWidth="97.0" />
+      <TableView layoutX="25.0" layoutY="360.0" prefHeight="200.0" prefWidth="945.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Usuarios" />
+          <TableColumn prefWidth="99.0" text="Hra. de llegada" />
+            <TableColumn prefWidth="111.0" text="Num. aleatorio 1" />
+            <TableColumn prefWidth="108.0" text="Tiempo/Llegada" />
+            <TableColumn prefWidth="103.0" text="Hra. de atención" />
+            <TableColumn prefWidth="109.0" text="Tiempo de espera" />
+            <TableColumn prefWidth="81.0" text="Op. escogida" />
+            <TableColumn prefWidth="88.0" text="Tiempo de op." />
+            <TableColumn prefWidth="103.0" text="Num. aleatorio 2" />
+            <TableColumn prefWidth="66.0" text="Hra. salida" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
