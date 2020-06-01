@@ -5,4 +5,4 @@ Verificar si los numeros son aleatorios.
 <h4>Ejecutable individual</h4>
 <a href="https://github.com/Daniel-dzp/Simulador/raw/master/Ejecutable/Simulador.jar">Descargar</a>
 <h4>Ejecutable zip</h4>
-<a href="https://github.com/Daniel-dzp/Simulador/raw/master/Ejecutable/Simulador.zip">Descargar</a>
+<a href="https://github.com/Daniel-dzp/Simulador/raw/master/Ejecutable/Ejecutable.zip">Descargar</a>
