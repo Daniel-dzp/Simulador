@@ -21,9 +21,9 @@
                         <Button layoutX="485.0" layoutY="22.0" mnemonicParsing="false" onAction="#aditivoInfo" prefHeight="25.0" prefWidth="61.0" text="Info" />
                         <Button layoutX="266.0" layoutY="192.0" mnemonicParsing="false" onAction="#aditivoGenerar" text="GENERAR" />
                         <Label layoutX="66.0" layoutY="68.0" text="No. semilla" />
-                        <TextField fx:id="aditivoNo" layoutX="164.0" layoutY="64.0" promptText="Cantidad de semilla" />
+                        <TextField fx:id="aditivoNo" layoutX="164.0" layoutY="64.0" promptText="Cantidad de semilla" text="2" />
                         <Label layoutX="376.0" layoutY="68.0" text="m" />
-                        <TextField fx:id="aditivoM" layoutX="411.0" layoutY="64.0" promptText="Módulo" />
+                        <TextField fx:id="aditivoM" layoutX="411.0" layoutY="64.0" promptText="Módulo" text="99" />
                         <Label layoutX="44.0" layoutY="113.0" text="Numeros a generar" />
                         <TextField fx:id="aditivoN" layoutX="164.0" layoutY="109.0" text="100" />
                      </children>
@@ -41,13 +41,13 @@
                         <Button layoutX="485.0" layoutY="22.0" mnemonicParsing="false" onAction="#multiInfo" prefHeight="25.0" prefWidth="61.0" text="Info" />
                         <Button layoutX="266.0" layoutY="192.0" mnemonicParsing="false" onAction="#multiGenerar" text="GENERAR" />
                         <Label layoutX="77.0" layoutY="66.0" text="Semilla" />
-                        <TextField fx:id="multiSemilla" layoutX="151.0" layoutY="62.0" promptText="Semilla" />
+                        <TextField fx:id="multiSemilla" layoutX="151.0" layoutY="62.0" promptText="Semilla" text="1735" />
                         <TextField fx:id="multiN" layoutX="151.0" layoutY="109.0" text="100" />
                         <Label layoutX="45.0" layoutY="113.0" text="Numeros a generar" />
                         <Label layoutX="348.0" layoutY="66.0" text="K" />
                         <Label layoutX="348.0" layoutY="113.0" text="g" />
-                        <TextField fx:id="multiK" layoutX="397.0" layoutY="62.0" promptText="Constante" />
-                        <TextField fx:id="multiG" layoutX="397.0" layoutY="109.0" onAction="#multiGenerar" promptText="g" />
+                        <TextField fx:id="multiK" layoutX="397.0" layoutY="62.0" promptText="Constante" text="13" />
+                        <TextField fx:id="multiG" layoutX="397.0" layoutY="109.0" onAction="#multiGenerar" promptText="g" text="9" />
                      </children>
                   </AnchorPane>
                </content>
@@ -64,10 +64,10 @@
                         <Label layoutX="365.0" layoutY="67.0" text="m" />
                         <Label layoutX="368.0" layoutY="104.0" text="c" />
                         <Label layoutX="50.0" layoutY="141.0" text="Numeros a generar" />
-                        <TextField fx:id="mixtoSemilla" layoutX="169.0" layoutY="63.0" promptText="Semilla" />
-                        <TextField fx:id="mixtoA" layoutX="169.0" layoutY="100.0" promptText="Multiplicador" />
-                        <TextField fx:id="mixtoM" layoutX="397.0" layoutY="63.0" promptText="Modulo" />
-                        <TextField fx:id="mixtoC" layoutX="397.0" layoutY="100.0" promptText="Constante" />
+                        <TextField fx:id="mixtoSemilla" layoutX="169.0" layoutY="63.0" promptText="Semilla" text="78" />
+                        <TextField fx:id="mixtoA" layoutX="169.0" layoutY="100.0" promptText="Multiplicador" text="18" />
+                        <TextField fx:id="mixtoM" layoutX="397.0" layoutY="63.0" promptText="Modulo" text="101" />
+                        <TextField fx:id="mixtoC" layoutX="397.0" layoutY="100.0" promptText="Constante" text="98" />
                         <TextField fx:id="mixtoN" layoutX="169.0" layoutY="137.0" text="100" />
                      </children>
                   </AnchorPane>

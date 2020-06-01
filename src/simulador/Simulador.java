@@ -15,10 +15,10 @@ public class Simulador {
         this.numerosAleatorios = numerosAleatorios;
         
         operaciones = new ArrayList();
-        operaciones.add(new Operacion("Retiro", 80, 57));
-        operaciones.add(new Operacion("Consulta", 50,47));
-        operaciones.add(new Operacion("Transferencia", 120, 47));
-        operaciones.add(new Operacion("Otros", 60, 47));
+        operaciones.add(new Operacion("Retiro", 240, 57));
+        operaciones.add(new Operacion("Consulta", 120,47));
+        operaciones.add(new Operacion("Transferencia", 420, 47));
+        operaciones.add(new Operacion("Otros", 160, 47));
     }
     
     public double[][] simular(int noClientes, double media, double desviacion, int horaInicio){
@@ -86,8 +86,9 @@ public class Simulador {
         
     }
     
+    //no se supo como sacar
     public double distribucionNormalInversa(double noAleatorio, double media, double desviacion){
-        return 40.0;
+        return noAleatorio*(desviacion*5)+(media - (desviacion*5)/2);
     }
     
     public int seleccionarOperacion(double noAleatorio, double[] fAcomulada){

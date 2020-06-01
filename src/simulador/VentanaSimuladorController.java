@@ -155,8 +155,8 @@ public class VentanaSimuladorController implements Initializable {
                             FormatoFecha.segAHora((int)tabla[i][8])));
                     
                 }
+                this.tabla.getItems().clear();
                 this.tabla.getItems().addAll(t);
-                this.tabla.setStyle("-fx-alignment: CENTER-RIGHT;");
                 
                 this.tablaRango.getItems().clear();
                 for(int i=0;i<simulador.fAcomulada.length;i++)
@@ -168,6 +168,7 @@ public class VentanaSimuladorController implements Initializable {
                 this.tablaFrecuencias.getItems().add(new FilaFrecuencia("f(x)", simulador.fRelativa[0], simulador.fRelativa[1], simulador.fRelativa[2], simulador.fRelativa[3]));
                 this.tablaFrecuencias.getItems().add(new FilaFrecuencia("f(x)", simulador.fAcomulada[0], simulador.fAcomulada[1], simulador.fAcomulada[2], simulador.fAcomulada[3]));
                 
+                this.tablaOperaciones.getItems().clear();
                 this.tablaOperaciones.getItems().addAll(simulador.operaciones);
             }
             else

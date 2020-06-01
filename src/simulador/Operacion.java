@@ -24,8 +24,8 @@ public class Operacion {
         this.nombre = nombre;
     }
 
-    public int getTiempo() {
-        return tiempo;
+    public String getTiempo() {
+        return FormatoFecha.segAHora(tiempo);
     }
 
     public void setTiempo(int tiempo) {

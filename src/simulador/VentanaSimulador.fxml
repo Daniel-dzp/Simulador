@@ -11,7 +11,7 @@
       <TableView fx:id="tablaOperaciones" layoutX="91.0" layoutY="17.0" prefHeight="149.0" prefWidth="251.0" />
       <TableView fx:id="tablaFrecuencias" layoutX="512.0" layoutY="17.0" prefHeight="149.0" prefWidth="455.0" />
       <Label layoutX="500.0" layoutY="191.0" prefHeight="17.0" prefWidth="97.0" text="Valor de media:" />
-      <TextField fx:id="media" layoutX="597.0" layoutY="187.0" prefHeight="25.0" prefWidth="89.0" text="00:02:00" />
+      <TextField fx:id="media" layoutX="597.0" layoutY="187.0" prefHeight="25.0" prefWidth="89.0" text="00:04:00" />
       <Button layoutX="411.0" layoutY="224.0" mnemonicParsing="false" onAction="#simular" prefHeight="25.0" prefWidth="137.0" text="Generar resultados" />
       <Label layoutX="740.0" layoutY="191.0" prefHeight="17.0" prefWidth="116.0" text="Valor de desviación:" />
       <Label layoutX="33.0" layoutY="191.0" prefHeight="17.0" prefWidth="116.0" text="Numero de usuarios:" />
