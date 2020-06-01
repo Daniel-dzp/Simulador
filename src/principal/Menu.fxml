@@ -9,7 +9,7 @@
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="165.0" prefWidth="280.0" spacing="10.0">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generar" text="Generar Seudo Números" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generar" text="Generar Pseudonumeros" />
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verificar" text="Verificar Aleatoriedad" />
             <Button layoutX="20.0" layoutY="55.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pruebaYAjuste" text="Prueba y Ajuste" />
             <Button mnemonicParsing="false" onAction="#simulador" prefHeight="25.0" prefWidth="260.0" text="Simulador" />

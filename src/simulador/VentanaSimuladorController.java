@@ -156,6 +156,7 @@ public class VentanaSimuladorController implements Initializable {
                     
                 }
                 this.tabla.getItems().addAll(t);
+                this.tabla.setStyle("-fx-alignment: CENTER-RIGHT;");
                 
                 this.tablaRango.getItems().clear();
                 for(int i=0;i<simulador.fAcomulada.length;i++)
