@@ -29,7 +29,6 @@ public class TablasController implements Initializable {
         eC = new EstadisticoChiCuadrada();
         
         items.add("Distribución  chi-2");
-        items.add("Distribución normal");
         items.add("Kolmogorov");
         
         select.setItems(items);
@@ -45,8 +44,7 @@ public class TablasController implements Initializable {
         switch(select.getSelectionModel().getSelectedIndex())
         {
             case 0: textArea.setText(eC.getTabla()); break;
-            case 1:  break;
-            case 2: textArea.setText(ek.getTabla()); break;
+            case 1: textArea.setText(ek.getTabla()); break;
         }
     }
     

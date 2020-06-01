@@ -38,7 +38,7 @@ public class Poker {
         for(int i=0; i<num.length; i++)
         {
             String numero=completar((int)(num[i]*10000));
-            System.out.println(numero);
+            //System.out.println(numero);
             digito[0]=numero.substring(0, 1);
             digito[1]=numero.substring(1, 2);
             digito[2]=numero.substring(2, 3);
