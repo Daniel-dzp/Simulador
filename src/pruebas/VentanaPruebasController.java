@@ -30,6 +30,7 @@ import javafx.util.Callback;
 import mensajes.Mensajes;
 import principal.MenuController;
 import pruebas.pruebas.ChiCuadrada;
+import pruebas.pruebas.Autocorrelacion;
 import pruebas.pruebas.Corridas;
 import pruebas.pruebas.Huecos;
 import pruebas.pruebas.Kolmogorov;
@@ -81,6 +82,7 @@ public class VentanaPruebasController implements Initializable {
     Huecos huecos;
     Corridas corridas;
     Poker poker;
+    Autocorrelacion autocorrelacion;
     
     
     @Override
@@ -158,6 +160,7 @@ public class VentanaPruebasController implements Initializable {
         if(pruebaA.selectedProperty().getValue())
         {
             detallesA.setDisable(false);
+            pruebaAutocorrelacion();
         }
         if(pruebaPo.selectedProperty().getValue())
         {
@@ -220,6 +223,15 @@ public class VentanaPruebasController implements Initializable {
             resultadoPo.setSelected(true);
         else
             resultadoPo.setIndeterminate(true);
+    }
+    
+    private void pruebaAutocorrelacion(){
+        autocorrelacion = new Autocorrelacion(numeros);
+        
+        if(autocorrelacion.metodo())
+            resultadoA.setSelected(true);
+        else
+            resultadoA.setIndeterminate(true);
     }
 
     @FXML
@@ -327,7 +339,7 @@ public class VentanaPruebasController implements Initializable {
     
     @FXML
     private void detallesA(ActionEvent event) {
-        
+        ventanaDetalles(autocorrelacion.procedimiento, autocorrelacion.hipotesis);
     }
 
     @FXML
