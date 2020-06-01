@@ -1,7 +1,8 @@
-package generador;
+package io;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -62,4 +63,8 @@ public class Archivo{
         return numeros;
     }
     
+    public long noDatos(){
+        long longitud = new File(archivo).length();
+        return longitud/8;
+    }
 }

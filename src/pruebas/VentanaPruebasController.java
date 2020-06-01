@@ -1,6 +1,7 @@
 package pruebas;
 
-import generador.Archivo;
+
+import io.Archivo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
