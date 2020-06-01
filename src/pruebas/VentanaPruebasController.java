@@ -30,6 +30,7 @@ import javafx.util.Callback;
 import mensajes.Mensajes;
 import principal.MenuController;
 import pruebas.pruebas.ChiCuadrada;
+import pruebas.pruebas.Corridas;
 import pruebas.pruebas.Huecos;
 import pruebas.pruebas.Kolmogorov;
 import pruebas.pruebas.Promedios;
@@ -77,6 +78,7 @@ public class VentanaPruebasController implements Initializable {
     ChiCuadrada chiCuadrada;
     Kolmogorov kolmogorov;
     Huecos huecos;
+    Corridas corridas;
     
     
     @Override
@@ -144,6 +146,7 @@ public class VentanaPruebasController implements Initializable {
         if(pruebaC.selectedProperty().getValue())
         {
             detallesC.setDisable(false);
+            pruebaCorridas();
         }
         if(pruebaH.selectedProperty().getValue())
         {
@@ -199,6 +202,13 @@ public class VentanaPruebasController implements Initializable {
             resultadoH.setIndeterminate(true);
     }
     
+    private void pruebaCorridas(){
+        corridas = new Corridas(numeros);
+        if(corridas.metodo())
+            resultadoC.setSelected(true);
+        else
+            resultadoC.setIndeterminate(true);
+    }
 
     @FXML
     private void guardar(ActionEvent event) throws IOException {
@@ -295,6 +305,7 @@ public class VentanaPruebasController implements Initializable {
 
     @FXML
     private void detallesC(ActionEvent event) {
+        ventanaDetalles(corridas.procedimiento, corridas.hipotesis);
     }
 
     @FXML

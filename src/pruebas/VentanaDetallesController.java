@@ -18,10 +18,7 @@ public class VentanaDetallesController implements Initializable {
        
     }
 
-    @FXML
-    private void cerrar(ActionEvent event) {
-        
-    }
+   
     
     public void setString(String procedimiento, String hipotesis)
     {
