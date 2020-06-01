@@ -33,6 +33,7 @@ import pruebas.pruebas.ChiCuadrada;
 import pruebas.pruebas.Corridas;
 import pruebas.pruebas.Huecos;
 import pruebas.pruebas.Kolmogorov;
+import pruebas.pruebas.Poker;
 import pruebas.pruebas.Promedios;
 
 /**
@@ -79,6 +80,7 @@ public class VentanaPruebasController implements Initializable {
     Kolmogorov kolmogorov;
     Huecos huecos;
     Corridas corridas;
+    Poker poker;
     
     
     @Override
@@ -160,6 +162,7 @@ public class VentanaPruebasController implements Initializable {
         if(pruebaPo.selectedProperty().getValue())
         {
             detallesPo.setDisable(false);
+            pruebaPoker();
         }
         
         guardar.setDisable(false);
@@ -208,6 +211,15 @@ public class VentanaPruebasController implements Initializable {
             resultadoC.setSelected(true);
         else
             resultadoC.setIndeterminate(true);
+    }
+    
+    private void pruebaPoker(){
+        poker = new Poker(numeros);
+        
+        if(poker.metodo())
+            resultadoPo.setSelected(true);
+        else
+            resultadoPo.setIndeterminate(true);
     }
 
     @FXML
@@ -320,6 +332,7 @@ public class VentanaPruebasController implements Initializable {
 
     @FXML
     private void detallesPo(ActionEvent event) {
+        ventanaDetalles(poker.procedimiento, poker.hipotesis);
     }
     
     private void ventanaDetalles(String procedimiento, String hipotesis)
